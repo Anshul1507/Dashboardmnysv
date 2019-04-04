@@ -14,8 +14,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<String> mAmount = new ArrayList<>();
-    private ArrayList<String> mDate = new ArrayList<>();
     private Context context;
 
 
@@ -31,32 +29,16 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, new HomeFragment()).commit();
 
-        initTransactionInfo();
+//        initTransactionInfo();
     }
 
-    private void initTransactionInfo(){
-        mAmount.add("Amount spent : Rs. 659.20");
-        mDate.add("On March 31st, 2019");
-        mAmount.add("Amount spent : Rs. 2645.90");
-        mDate.add("On March 29th, 2019");
-        mAmount.add("Amount spent : Rs. 500.00");
-        mDate.add("On March 29th, 2019");
-        mAmount.add("Amount spent : Rs. 100.50");
-        mDate.add("On March 29th, 2019");
-        mAmount.add("Amount spent : Rs. 29.20");
-        mDate.add("On March 28th, 2019");
-        mAmount.add("Amount spent : Rs. 5902.68");
-        mDate.add("On March 28th, 2019");
-        initRecyclerView();
-    }
-    private void initRecyclerView(){
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        final RecyclerViewAdapter adapter = new RecyclerViewAdapter(context,mAmount,mDate);
-        final LinearLayoutManager lm = new LinearLayoutManager(context);
-        lm.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(lm);
-        recyclerView.setAdapter(adapter);
-    }
+//    private void initTransactionInfo(){
+//
+//        initRecyclerView();
+//    }
+//    private void initRecyclerView(){
+//
+//    }
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -65,20 +47,25 @@ public class MainActivity extends AppCompatActivity {
 
                     switch (menuItem.getItemId()){
                         case R.id.nav_account:
-                            selectedFragment = new AccountFragment();
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.fragment_container, new AccountFragment()).commit();
+
                             break;
                         case R.id.nav_settings:
-                            selectedFragment = new SettingsFragment();
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.fragment_container, new SettingsFragment()).commit();
+
                             break;
                         case R.id.nav_home:
-                            selectedFragment = new HomeFragment();
-                            break;
+//                            selectedFragment = new HomeFragment();
+//                            break;
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.fragment_container, new HomeFragment()).commit();
+
                         default:
                             selectedFragment = new HomeFragment();
                             break;
                     }
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.fragment_container, selectedFragment).commit();
 
                     return true;
                 }
